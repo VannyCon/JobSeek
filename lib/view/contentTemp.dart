@@ -41,7 +41,7 @@ class HomeContent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  'Microsoft',
+                                  'Mirco',
                                   textAlign: TextAlign.start,
                                 ),
                                 const Text(
