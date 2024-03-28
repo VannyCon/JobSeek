@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "693029812993",
+    "project_id": "jobseekapi",
+    "storage_bucket": "jobseekapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693029812993:android:47c9b3a37abdbc88f9b900",
+        "android_client_info": {
+          "package_name": "com.example.second_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMOdHasSoM8AQce4EYKDABMZ799vs-YNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

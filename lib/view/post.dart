@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:second_app/controller/firebase.dart';
 import 'insert.dart';
 import 'update.dart';
 
@@ -9,6 +9,7 @@ class PostContent extends StatefulWidget {
 }
 
 class _PostContentState extends State<PostContent> {
+  final FirestoreService firestoreService = FirestoreService();
   String insertName = 'INSERT';
 
   @override
@@ -33,6 +34,7 @@ class _PostContentState extends State<PostContent> {
                 ),
               ),
               onPressed: () {
+                firestoreService.addNotes(insertName);
                 print(insertName);
                 Navigator.push(
                   context,

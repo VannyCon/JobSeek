@@ -32,7 +32,9 @@ dependencies:
     sdk: flutter
   provider: ^5.0.0
   cupertino_icons: ^1.0.6
-  http: ^1.2.1
+  http: ^0.13.3 # Corrected version of http package to avoid conflicts
+  firebase_core: ^2.0.0
+  cloud_firestore: 4.15.10 # Downgraded cloud_firestore version to match firebase_core version
 
 dev_dependencies:
   flutter_test:

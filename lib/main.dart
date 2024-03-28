@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'content.dart';
-import 'post.dart';
+import 'package:second_app/firebase_options.dart';
+import 'view/content.dart';
+import 'view/post.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  print(DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
