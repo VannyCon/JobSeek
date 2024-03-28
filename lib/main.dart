@@ -1,9 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:second_app/firebase_options.dart';
-import 'view/content.dart';
-import 'view/post.dart';
+import 'view/components/home_page.dart';
+import 'view/components/update_page.dart';
+// import 'view/post.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,14 +48,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          Center(
-            child: wheremyIndex == 0
-                ? home()
-                : wheremyIndex == 1
-                    ? about()
-                    : wheremyIndex == 2
-                        ? settings(context)
-                        : Container(),
+          Expanded(
+            child: Center(
+              child: wheremyIndex == 0
+                  ? HomeContent()
+                  : wheremyIndex == 1
+                      ? PostContent()
+                      : wheremyIndex == 2
+                          ? settings(context)
+                          : Container(),
+            ),
           ),
         ],
       ),
@@ -97,14 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       },
     );
-  }
-
-  Widget home() {
-    return HomeContent(); // Return Content widget from content.dart
-  }
-
-  Widget about() {
-    return PostContent(); // Return Content widget from content.dart
   }
 
   Container settings(BuildContext context) {

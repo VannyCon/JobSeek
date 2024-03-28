@@ -188,14 +188,7 @@ class _PostContentState extends State<PostContent> {
                                   ),
                                   // Use primary to set the background color
                                 ),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            UploadForm()), // Calling the MyForm widget
-                                  );
-                                },
+                                onPressed: () {},
                                 child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
