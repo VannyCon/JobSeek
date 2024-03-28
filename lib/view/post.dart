@@ -34,7 +34,6 @@ class _PostContentState extends State<PostContent> {
                 ),
               ),
               onPressed: () {
-                firestoreService.addNotes(insertName);
                 print(insertName);
                 Navigator.push(
                   context,

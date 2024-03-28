@@ -6,14 +6,20 @@ class FirestoreService {
       FirebaseFirestore.instance.collection('posts');
 
   // CREATE
-  Future<void> addNotes(String note) {
+  Future<void> addNotes(String companyEmail, String companyName,
+      String jobOffer, String location, String salary) {
     return posts.add({
-      'companyEmail': 'test@gmail.com',
-      'companyName': 'Test Company',
-      'id': '1',
-      'jobOffer': 'Software Engineer',
-      'location': 'Ph',
-      'salary': '20,000',
+      'companyEmail': companyEmail,
+      'companyName': companyName,
+      'id': 'emailAsId$companyEmail',
+      'jobOffer': jobOffer,
+      'location': location,
+      'salary': salary,
     });
+  }
+
+  Stream<QuerySnapshot> getNotesStream() {
+    final notesStream = posts.orderBy('id', descending: true).snapshots();
+    return notesStream;
   }
 }
