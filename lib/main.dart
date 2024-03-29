@@ -37,19 +37,18 @@ class _MyHomePageState extends State<MyHomePage> {
   TextStyle textStyle = const TextStyle(
       color: Color.fromARGB(255, 225, 222, 222)); // Set default TextStyle
   int wheremyIndex = 0;
-  Color containerColor = const Color.fromARGB(255, 235, 229, 220);
+  Color containerColor = Color(0xFFEFF0FA);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello World'),
-        backgroundColor: const Color.fromARGB(232, 214, 120, 33),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
+      backgroundColor: containerColor,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
               child: wheremyIndex == 0
                   ? HomeContent()
                   : wheremyIndex == 1
@@ -58,21 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           ? settings(context)
                           : Container(),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: bottomNav(),
-      floatingActionButton: floatingButton(context),
-    );
-  }
-
-  FloatingActionButton floatingButton(BuildContext context) {
-    return FloatingActionButton(
-      // Added FloatingActionButton
-      onPressed: () {
-        _showDialog(context); // Call showDialog when button pressed
-      },
-      child: const Icon(Icons.add),
     );
   }
 
@@ -84,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: Icon(Icons.home),
         ),
         BottomNavigationBarItem(
-          label: 'About',
+          label: 'Post',
           icon: Icon(Icons.question_answer_rounded),
         ),
         BottomNavigationBarItem(
@@ -168,33 +156,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-    );
-  }
-
-  void _showDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return CupertinoAlertDialog(
-          // Use showDialog with CupertinoAlertDialog
-          title: const Text('Accept?'),
-          content: const Text("Do you accept?"),
-          actions: [
-            CupertinoDialogAction(
-              child: const Text("No"), // Wrap text with Text widget
-              onPressed: () {
-                Navigator.of(context).pop(false); // Pop with a value if needed
-              },
-            ),
-            CupertinoDialogAction(
-              child: const Text("Yes"), // Wrap text with Text widget
-              onPressed: () {
-                Navigator.of(context).pop(true); // Pop with a value if needed
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
