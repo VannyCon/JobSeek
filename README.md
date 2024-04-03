@@ -1,6 +1,6 @@
-# second_app
+# JobSeekApp
 
-A new Flutter project.
+This is my First Ever Made Flutter App
 
 ## Getting Started
 
