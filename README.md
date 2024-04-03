@@ -26,12 +26,12 @@ This Project is for my Subject Event-Driven Programming, it is my first time to 
 
 
 ## Getting Started
-Step 1: Donwload this Repository
-Step 2: Open In VS Code, Navigate the path (Make Sure that flutter is Already Set up, if not the Start Looking for Videos/Site how to Install)
-Step 3: Run in Terminal this 
-`flutter pub get` (then the Errors will be fixed)
-Step 4: run again this in terminal
-`flutter run` (THere an option where you will run this system either Chrome/Edge/Windows, if you have android emulator you can Choose it also)
+Step 1: Donwload this Repository <br>
+Step 2: Open In VS Code, Navigate the path (Make Sure that flutter is Already Set up, if not the Start Looking for Videos/Site how to Install) <br>
+Step 3: Run in Terminal this <br>
+`flutter pub get` (then the Errors will be fixed) <br>
+Step 4: run again this in terminal <br>
+`flutter run` (THere an option where you will run this system either Chrome/Edge/Windows, if you have android emulator you can Choose it also) <br>
 
 
 
