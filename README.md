@@ -9,11 +9,11 @@ Clone the Repository:
 `git clone https://github.com/VannyCon/JobSeek.git`
 
 # Needs
-*Firebase
-*FireStore
-*Flutter
-*VS Code
-*Flutter Extentions
+*Firebase <br>
+*FireStore <br>
+*Flutter <br>
+*VS Code <br>
+*Flutter Extentions <br>
 
 
 Navigate to the Project Directory:
