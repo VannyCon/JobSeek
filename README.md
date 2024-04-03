@@ -6,7 +6,10 @@ This Project is made up of Flutter (dart) this will able you to made a CRUD oper
 
 # Installation
 Clone the Repository:
-`git clone https://github.com/VannyCon/JobSeek.git`
+`git clone https://github.com/VannyCon/JobSeek.git` <br>
+Navigate to the Project Directory:
+`cd JobSeek`
+
 
 # Needs
 *Firebase <br>
@@ -16,16 +19,15 @@ Clone the Repository:
 *Flutter Extentions <br>
 
 
-Navigate to the Project Directory:
-`cd JobSeek`
+
 
 ## Note
 This Project is for my Subject Event-Driven Programming, it is my first time to made this with the help of CHATGPT.
 
 
 ## Getting Started
-Step 1: DOnwload this Repository
-Step 2: Open In VS Code (Make Sure that flutter is Already Set up, if not the Start Looking for Videos/Site how to Install)
+Step 1: Donwload this Repository
+Step 2: Open In VS Code, Navigate the path (Make Sure that flutter is Already Set up, if not the Start Looking for Videos/Site how to Install)
 Step 3: Run in Terminal this 
 `flutter pub get` (then the Errors will be fixed)
 Step 4: run again this in terminal
