@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:second_app/controller/firebase.dart';
+import '../../controller/firebase.dart';
+import '../components/more.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeContent extends StatefulWidget {
   @override
@@ -19,20 +21,20 @@ class _HomeContentState extends State<HomeContent> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             width: 8,
-            height: 14,
+            height: 40,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                child: Text(
+                child: const Text(
                   'DASHBOARD',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 23,
-                    color: Color(0xFF808081),
+                    color: Color(0xFFFFFFFF),
                   ),
                 ),
               ),
@@ -42,39 +44,74 @@ class _HomeContentState extends State<HomeContent> {
                   Container(
                     width: 30, // Adjust the size as needed
                     height: 30, // Adjust the size as needed
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white, // Change the color as needed
+                      color: Color(0xFF52487A), // Change the color as needed
                     ),
                     child: const Center(
-                      child: Icon(
-                        Icons.notifications,
-                        color: Color(
-                            0xFF856BEE), // Change the icon color as needed
-                      ),
+                      child: Icon(Icons.notifications,
+                          color: Color(
+                            0xFFEFF0FA,
+                          ),
+                          size: 16 // Change the icon color as needed
+                          ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Container(
                     width: 30, // Adjust the size as needed
                     height: 30, // Adjust the size as needed
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white, // Change the color as needed
+                      color: Color(0xFF52487A), // Change the color as needed
                     ),
                     child: const Center(
-                      child: Icon(
-                        Icons.sunny,
-                        color: Color(
-                            0xFF856BEE), // Change the icon color as needed
-                      ),
+                      child: Icon(Icons.sunny,
+                          color: Color(0xFFEFF0FA),
+                          size: 16 // Change the icon color as needed
+                          ),
                     ),
                   ),
                 ],
               )
             ],
+          ),
+          const SizedBox(
+            width: 8,
+            height: 20,
+          ),
+          TextField(
+            style: TextStyle(color: Color(0xFFEFF0FA)),
+            onChanged: (value) {
+              setState(() {
+                _searchText = value;
+              });
+            },
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(
+                    10.0), // Adjust border radius as needed
+                borderSide: BorderSide.none, // Remove border color
+              ),
+              filled: true, // Fill the background with color
+              fillColor: const Color(0xFF52487A), // Set background color
+              labelText: 'Search',
+              labelStyle:
+                  TextStyle(color: Color(0xFFEFF0FA)), // Set label text color
+              hintText: 'Enter Location or Job',
+              hintStyle:
+                  TextStyle(color: Color(0xFFEFF0FA)), // Set hint text color
+              prefixIcon: const Icon(Icons.search,
+                  color: Color(0xFFEFF0FA)), // Set prefix icon color
+              contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12.0, horizontal: 12.0), // Adjust padding as needed
+            ),
+          ),
+          const SizedBox(
+            width: 8,
+            height: 25,
           ),
           Container(
             height: 300,
@@ -91,37 +128,17 @@ class _HomeContentState extends State<HomeContent> {
               ],
             ),
           ),
-          Column(
+          Row(
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: MySortDropdownButton(
-                      dropvalue: _sortBy,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _sortBy = newValue!;
-                        });
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: TextField(
-                      onChanged: (value) {
-                        setState(() {
-                          _searchText = value;
-                        });
-                      },
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Search',
-                        hintText: 'Enter Location or Job',
-                        prefixIcon: Icon(Icons.search),
-                      ),
-                    ),
-                  ),
-                ],
+              Expanded(
+                child: MySortDropdownButton(
+                  dropvalue: _sortBy,
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _sortBy = newValue!;
+                    });
+                  },
+                ),
               ),
             ],
           ),
@@ -132,7 +149,7 @@ class _HomeContentState extends State<HomeContent> {
                 return Text('Error: ${snapshot.error}');
               }
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               if (!snapshot.hasData) {
                 print("No data found");
@@ -207,8 +224,13 @@ class _HomeContentState extends State<HomeContent> {
 
                   return Card(
                     elevation: 3,
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                    margin: const EdgeInsets.only(
+                        left: 8, right: 8, bottom: 17, top: 0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8), // Adjust the border radius as needed
+                    ),
+                    color: const Color(0xFF856BEE),
                     child: ListTile(
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -219,11 +241,70 @@ class _HomeContentState extends State<HomeContent> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(companyName),
-                                  Text(companyEmail),
-                                  Text(jobOffer),
-                                  Text(location),
-                                  Text(salary),
+                                  Text(
+                                    companyName,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Color(0xFFEFF0FA),
+                                    ),
+                                  ),
+                                  Text(jobOffer,
+                                      style: const TextStyle(
+                                        color: Color(0xFFEFF0FA),
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.w900,
+                                      )),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.email,
+                                          color: Color(0xFFEFF0FA),
+                                          size: 16), // Icon widget
+                                      SizedBox(
+                                          width:
+                                              5), // Add some space between icon and text
+                                      Text(
+                                        companyEmail,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFFEFF0FA),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.location_on,
+                                          color: Color(0xFFEFF0FA),
+                                          size: 16), // Icon widget
+                                      SizedBox(
+                                          width:
+                                              5), // Add some space between icon and text
+                                      Text(
+                                        location,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFFEFF0FA),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(Icons.attach_money,
+                                          color: Color(0xFFEFF0FA),
+                                          size: 16), // Icon widget
+                                      SizedBox(
+                                          width:
+                                              5), // Add some space between icon and text
+                                      Text(
+                                        salary,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFFEFF0FA),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                               Column(
@@ -235,13 +316,16 @@ class _HomeContentState extends State<HomeContent> {
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            const Color(0xFF6BDEEE),
+                                            const Color(0xFFEFF0FA),
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        print(companyEmail);
+                                        _launchURL(context, companyEmail);
+                                      },
                                       child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -249,29 +333,40 @@ class _HomeContentState extends State<HomeContent> {
                                           Text(
                                             'MESSAGE',
                                             style: TextStyle(
-                                              color: Color(0xFFDDF8F9),
-                                              fontSize: 9,
+                                              color: Color(0xFF856BEE),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w900,
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Container(
                                     height: 35,
                                     width: 100,
                                     decoration: const BoxDecoration(),
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color(0xFFDDF8F9),
+                                        backgroundColor: Colors
+                                            .transparent, // Set the button color to transparent
+                                        elevation: 0, // Remove button elevation
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(5),
                                         ),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => MoreInfo(
+                                              docID: docId,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                       child: const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -279,8 +374,9 @@ class _HomeContentState extends State<HomeContent> {
                                           Text(
                                             'MORE',
                                             style: TextStyle(
-                                              color: Color(0xFF6BDEEE),
-                                              fontSize: 9,
+                                              color: Color(0xFFEFF0FA),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w900,
                                             ),
                                           ),
                                         ],
@@ -318,29 +414,70 @@ class MySortDropdownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: DropdownButton<String>(
+        dropdownColor: Color(0xFF52487A),
         value: dropvalue,
-        onChanged: onChanged,
-        icon: Icon(Icons.sort), // Sort icon
+        onChanged: onChanged, // Sort icon
         elevation: 0, // Remove elevation
-        style: TextStyle(
-          color: Colors.black, // Text color
+        style: const TextStyle(
+          color: Color(0xFFEFF0FA), // Text color
           fontSize: 16, // Text size
         ),
         underline: Container(), // Remove the underline
         items: <String>['Date', 'Location', 'Salary'].map((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              value,
-              textAlign: TextAlign.center, // Center text alignment
-              style: TextStyle(
-                color: Colors.black, // Text color
-                fontSize: 16, // Text size
-              ),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.sort_outlined,
+                  color: Color(0xFFEFF0FA),
+                ),
+                const SizedBox(
+                    width: 8), // Adjust spacing between icon and text
+                Text(
+                  value,
+                  textAlign: TextAlign.center, // Center text alignment
+                  style: const TextStyle(
+                    color: Color(0xFFEFF0FA), // Text color
+                    fontSize: 16, // Text size
+                  ),
+                ),
+              ],
             ),
           );
         }).toList(),
       ),
+    );
+  }
+}
+
+void _launchURL(BuildContext context, String? emails) async {
+  if (emails != null && emails.isNotEmpty) {
+    String email = emails;
+    var url = 'mailto:$email?subject=Subject&body=Body';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  } else {
+    // Display a message indicating that the email address is not available
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Email Not Available'),
+          content: const Text('The email address is not available.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

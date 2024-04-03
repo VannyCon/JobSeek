@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:second_app/controller/firebase.dart';
+import '../../../controller/firebase.dart';
 
 class InsertForm extends StatelessWidget {
   @override

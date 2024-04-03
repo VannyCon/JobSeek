@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
   // READ
@@ -47,5 +49,53 @@ class FirestoreService {
 
   Future<void> deleteNote(String docID) async {
     return posts.doc(docID).delete();
+  }
+
+  Future<String> getImageUrl(String imageName) async {
+    final storageRef =
+        FirebaseStorage.instance.ref().child('Images').child(imageName);
+    final url = await storageRef.getDownloadURL();
+    return url;
+  }
+}
+
+// AUTHSERVICE CLASS
+class AuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Sign in with email and password
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = result.user;
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // Register with email and password
+  Future<User?> registerWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = result.user;
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  // Sign out
+  Future<void> signOut() async {
+    await _auth.signOut();
   }
 }

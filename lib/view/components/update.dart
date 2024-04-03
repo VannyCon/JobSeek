@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:second_app/controller/firebase.dart';
+import '../../../controller/firebase.dart';
 
 class UpdateForm extends StatelessWidget {
   final String docID;
