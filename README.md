@@ -12,11 +12,11 @@ Navigate to the Project Directory:
 
 
 # Needs
-*Firebase <br>
-*FireStore <br>
-*Flutter <br>
-*VS Code <br>
-*Flutter Extentions <br>
+🦜Firebase <br>
+🦜FireStore <br>
+🦜Flutter <br>
+🦜VS Code <br>
+🦜Flutter Extentions <br>
 
 
 
